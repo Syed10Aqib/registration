@@ -9,21 +9,21 @@
 <body>
     <div class="form-container">
         <h2>Registration Form</h2>
-        <form id="registrationForm" method="POST" action="https://www.adityahegde.me/submit.php">
+        <form id="registrationForm">
             <label for="firstname">First name:</label>
-            <input type="text" class="form-control" aria-label="First Name" id="firstname" name="firstname" required="">
+            <input type="text" class="form-control" id="firstname" name="firstname" required="">
             
             <label for="lastname">Last name:</label>
-            <input type="text" class="form-control" aria-label="Last Name" id="lastname" name="lastname" required="">
+            <input type="text" class="form-control" id="lastname" name="lastname" required="">
             
             <label for="email">Email:</label>
-            <input type="email" class="form-control" aria-label="Email" id="email" name="email" required="">
+            <input type="email" class="form-control" id="email" name="email" required="">
             
             <label for="phone">Phone:</label>
-            <input type="text" class="form-control" aria-label="Phone No" id="phone" name="phone" required="">
+            <input type="text" class="form-control" id="phone" name="phone" required="">
             
             <label for="address">Address:</label>
-            <textarea id="address" class="form-control" aria-label="Address" name="address" required=""></textarea>
+            <textarea id="address" class="form-control" name="address" required=""></textarea>
             
             <button type="submit">Submit</button>
         </form>
@@ -34,8 +34,31 @@
         </div>
     </div>
 
-    <!-- Correctly linking to jQuery and script files -->
     <script src="jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#registrationForm").on("submit", function (event) {
+                event.preventDefault();
+
+                const firstname = $("#firstname").val(); // Get first name
+                const lastname = $("#lastname").val(); // Get last name
+                const email = $("#email").val(); // Get email
+                const phone = $("#phone").val(); // Get phone
+                const address = $("#address").val(); // Get address
+
+                const name = ${firstname} ${lastname}; // Concatenate first and last name
+
+                const displayData = `
+                    <strong>Name:</strong> ${name}<br>
+                    <strong>Email:</strong> ${email}<br>
+                    <strong>Phone:</strong> ${phone}<br>
+                    <strong>Address:</strong> ${address}
+                `;
+
+                $("#displayData").html(displayData); // Display data
+                $("#successMessage").show(); // Show success message
+            });
+        });
+    </script>
 </body>
 </html>
